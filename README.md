@@ -1,3 +1,3 @@
-# polaris
+# Home-automation
 
 My home automation server
