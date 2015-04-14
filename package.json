@@ -1,0 +1,12 @@
+{
+  "name": "domotica-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Rolf Koenders",
+  "dependencies": {
+    "pushover-notifications": "^0.2.2",
+    "virgilio": "^0.12.5",
+    "virgilio-http": "^0.8.1"
+  }
+}
