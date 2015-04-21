@@ -1,39 +1,27 @@
 
-var Push = require( 'pushover-notifications' );
-
 module.exports = function doorbellService(options) {
     var virgilio = this;
+    var doorbellOptions = options.services.doorbell;
+    var utils = virgilio.namespace$('utils');
+    var services = virgilio.namespace$('services');
 
-    var server = virgilio.namespace$('server');
-    var push = virgilio.namespace$('push');
-
-    server.http.get('/api/doorbell')
+    services.http.get('/api/doorbell')
         .addHandler(function handler(req, res) {
             var virgilio = this;
             virgilio.log$.info('Ring Ring');
 
-            var push_msg = {
-                message: "Ring Ring Ring",
-                title: "Deurbel",
-                sound: 'echo',
-                priority: 1,
-                retry: 30,
-                expire: 60
-            };
-
-            var push = new Push({
+            utils.pushMessage({
                 token: options.secrets.pushover.token,
                 user: options.secrets.pushover.group_key,
-                update_sounds: true
-            });
-
-            push.send(push_msg, function(err, result) {
-                if(err) {
-                    virgilio.log$.error(err, 'sending push error');
-                    res.send(500, err);
-                } else {
-                    res.send(200, result);
-                }
+                update_sounds: true,
+                message: doorbellOptions.message
+            })
+            .then(function(result) {
+                res.send(200, result);
+            })
+            .catch(function(err) {
+                virgilio.log$.error(err, 'sending push error');
+                res.send(500, err);
             });
         });
 }

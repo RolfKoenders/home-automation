@@ -7,5 +7,8 @@ var config = require('./config'),
 virgilio.loadModule$(require('virgilio-http'));
 virgilio.http.use$(virgilio.http.bodyParser());
 
+// Utils
+virgilio.loadModule$(require('./utils/push'));
+
 // Services
 virgilio.loadModule$(require('./services/doorbell'));
