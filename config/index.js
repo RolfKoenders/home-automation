@@ -1,8 +1,5 @@
 
 var SECRETS = require('./secrets.json');
-if(!SECRETS) {
-    console.log('@@-- NO SECRETS FILE PROVIDED --@@');
-}
 
 var config = {
     "http": {
