@@ -14,7 +14,7 @@ module.exports = function doorbellService(options) {
                 token: options.secrets.pushover.token,
                 user: options.secrets.pushover.group_key,
                 update_sounds: true,
-                message: doorbellOptions.message
+                message: doorbellOptions.push.message
             })
             .then(function(result) {
                 res.send(200, result);
