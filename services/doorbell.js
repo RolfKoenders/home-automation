@@ -8,7 +8,7 @@ module.exports = function doorbellService(options) {
     services.http.get('/api/doorbell')
         .addHandler(function handler(req, res) {
             var virgilio = this;
-            virgilio.log$.info('Ring Ring');
+            virgilio.log$.info('[Doorbell] Ring Ring');
 
             utils.pushMessage({
                 token: options.secrets.pushover.token,
