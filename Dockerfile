@@ -16,4 +16,3 @@ ADD . /opt/home-automation
 EXPOSE 9080
 
 CMD ["node", "."]
-
